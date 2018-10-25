@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shows</title>
+
+
+
+    <meta name="viewport" content="width=device-width , initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+
+
+    <script>
+        $(document).ready(function () {
+        	
+        /*	var myToken;
+    		if (localStorage.token == null) {
+    			myToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ";
+    		} else {
+    			myToken = localStorage.token;
+    		}
+        	
+    		$("#btnLog").click(function(){
+        		localStorage.setItem("username",$("#username").val());
+        		$.ajax({
+        			  method: "POST",
+        			  url: "http://localhost:8080/ExerciciosProgramacao/rest/users/auth",
+        			  data: { 
+        				  username: $("#username").val(), 
+        				  password: $("#password").val(), 
+        			  }
+        			})
+        		  .done(function( msg ) {
+        		      console.log("Token: " + msg)
+        		      localStorage.setItem("token", msg);
+        		      window.location.href = "home.html";
+        		  });
+        	});
+       
+       
+        
+        $("#btnRegist").click(function(){
+    		$.ajax({
+    			  method: "POST",
+    			  url: "http://localhost:8080/ExerciciosProgramacao/rest/users",
+    			  data: { 
+    				  username: $("#registUsername").val(), 
+    				  password: $("#registPassword").val(),
+    				  email: $("#registEmail").val(),
+    				  name: $("#registNome").val()
+    		
+    			  }
+    			})
+    		  .done(function( msg ) {
+    		      console.log("Token: " + msg)
+    		      localStorage.setItem("token", msg);
+    		      window.location.href = "home.html";
+    		      
+    		  });
+    	});
+        	
+        	
+    		var url = "";	
+    		
+    			url = "http://localhost:8080/ExerciciosProgramacao/rest/exercises";
+    		
+    			
+    		var jqxhr = $.get(url, function() {
+    			  
+    		})
+    		 .done(function (data) {
+             	console.log(data);
+                 $("#tbl").empty();
+                 var trTemp = "";
+                 trTemp += "<tr><th colspan='8'>Lista de Exercícios</th></tr>";
+                 trTemp += "<tr><th>Data de Criação</th><th>Autor</th><th>Titulo</th><th>Explicação</th><th>Código</th><th>Linguagem</th><th>Resultado</th></tr>";
+                 $("#tbl").append(trTemp);
+
+                 $.each(data, function (i, obj) {
+                    
+                         trTemp = "<tr><td>" + obj.creationDate + "</td><td>" +
+                         obj.user.username + "</td><td>" +
+                         obj.title + "</td><td>" +
+                         obj.explanation + "</td><td>" +
+                         obj.solution.code + "</td><td>" +
+                         obj.solution.language + "</td><td>" +
+                         obj.solution.output + "</td><tr>";
+                         $("#tbl").append(trTemp);
+                 });
+
+             })
+             .fail(function () {
+                 alert("error");
+             });
+    		*/
+    		//Pesquisar exercicio por titulo
+    		
+    		$("#GetExercicio").click(function () {
+    			var category = $("#txtGetExercicio").val();
+    			var url = "http://localhost:8080/ShowIt/api/shows/" + category;
+        		
+        			
+        		var jqxhr = $.get(url, function() {
+        			  
+        		})
+    				.done(function (data) {
+                	console.log(data);
+                    $("#tbl").empty();
+                    var trTemp = "";
+                    trTemp += "<tr><th colspan='8'>Shows</th></tr>";
+                    trTemp += "<tr><th>Name</th><th>Description</th><th>Gender</th><th>Release</th><th>Seasons</th><th>Episodes</th><th>IMDB</th><th>Users Rate</th></tr>";
+                    $("#tbl").append(trTemp);
+
+                    $.each(data, function (i, obj) {
+                       
+                            trTemp = "<tr><td>" + obj.name + "</td><td>" +
+                            obj.desc + "</td><td>" +
+                            obj.gender + "</td><td>" +
+                            obj.release + "</td><td>" +
+                            obj.seasons + "</td><td>" +
+                            obj.episodes + "</td><td>" +
+                            obj.imdb + "</td><td>" +
+                            obj.cusers + "</td><tr>";
+                            
+                            $("#tbl").append(trTemp);
+                    });
+
+                })
+    				
+    			.fail(function (e) {
+    				alert("The Show doesnt exists");
+    			});
+    		});
+            
+            $("#DelShow").click(function(){
+                var show = $("#txtDelShow").val();
+                console.log(show)
+    		$.ajax({
+    			  method: "DELETE",
+    			  url: "http://localhost:8080/ShowIt/api/shows/" + show,
+    			  data: { 
+    				  name: show
+    		
+    			  }
+    			})
+    		  .done(function( msg ) {
+    		      console.log(show)
+    		      
+    		      
+    		  });
+    	});
+    		// Volta a mostrar todos
+    		$("#btnTodos").click(function () {
+    		
+    
+        		var url = "http://localhost:8080/ShowIt/api/shows";
+        		
+        			
+        		var jqxhr = $.get(url, function() {
+        			  
+        		})
+        		 .done(function (data) {
+                 	console.log(data);
+                     $("#tbl").empty();
+                     var trTemp = "";
+                     trTemp += "<tr><th colspan='8'>All Shows</th></tr>";
+                     trTemp += "<tr><th>Name</th><th>Description</th><th>Gender</th><th>Release</th><th>Seasons</th><th>Episodes</th><th>IMDB</th><th>Users Rate</th></tr>";
+                    $("#tbl").append(trTemp);
+
+                     $.each(data, function (i, obj) {
+                        
+                        trTemp = "<tr><td>" + obj.name + "</td><td>" +
+                            obj.desc + "</td><td>" +
+                            obj.gender + "</td><td>" +
+                            obj.release + "</td><td>" +
+                            obj.seasons + "</td><td>" +
+                            obj.episodes + "</td><td>" +
+                            obj.imdb + "</td><td>" +
+                            obj.cusers + "</td><tr>";
+                       
+                             $("#tbl").append(trTemp);
+                     });
+
+                 })
+                 .fail(function () {
+                     alert("error");
+                 });
+            });
+           
+        });
+
+  
+
+    </script>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <center>
+            <div class="row" style="margin-top: 100px">
+                <h1>Manage </h1>
+
+            </div>
+        </center>
+
+        <center>
+
+            <div class="customHr" id="sugest" style="margin-top: 50px">.</div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div>Shows</div>
+                    <div class="col-md-4">
+                        <input id='txtGetExercicio' type='text' required='' placeholder='Show' class='form-control'
+                            name='GetExercicio'>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" id="GetExercicio" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-search"></span>Shearch
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-default btn-sm" id="btnTodos">
+                            <span class="glyphicon glyphicon-refresh"></span> Show All
+                        </button>
+                    </div>
+                </div>
+                <br>
+            </br>
+                <br>
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <div>Delete Show</div>
+                    </div>
+                    <div class="col-md-4">
+                        <input id='txtDelShow' type='text' required='' placeholder='Show' class='form-control' name='DelShow'>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" id="DelShow" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-search"></span>Delete
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <center>
+                <table id="tbl" border="1" style="width:100%;font-family: Times New Roman" , Times, serif;">
+                </table>
+            </center>
+        </div>
+    </div>
+
+</body>
+
+</html>

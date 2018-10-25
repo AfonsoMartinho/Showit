@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create Shows</title>
+
+
+
+    <meta name="viewport" content="width=device-width , initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+
+
+
+    <script>
+        $(document).ready(function () {
+
+            //Get localstorageu user
+	var username = localStorage.getItem("username");
+	
+            alert(username);
+	$("#uname").html("Olá " + username);
+	
+	//Logout and clean Local Storage
+	$("#logoutbut").click(function () {
+		localStorage.clear();
+			window.location.href = "index.html";
+	});
+	
+	var myToken;
+	if (localStorage.token == null) {
+		myToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ";
+	} else {
+		myToken = localStorage.token;
+	}
+
+            /* $("#btnaddShow").click(function () {
+            	$.ajax({
+					method: "POST",
+					url: "http://localhost:8080/ShowIt/api/shows/",
+					data: {
+						name: $("#txtname").val(),
+                        desc: $("#txtdesc").val(),
+                        gender: $("#txtgender").val(),
+                        release: $("#txtrelease").val(),
+                        seasons: $("#txtseasons").val(),
+                        episodes: $("#txtepisodes").val(),
+                        imdb: $("#txtimdb").val(),
+                        cusers: $("#txtcusers").val(),
+					}
+				})
+                    .done(function (msg) {
+                    	alert(msg);
+                        alert("Show Created!");
+                    });
+            });
+        }); */
+            $("#btnaddShow").click(function () {
+                var name = $("#txtname").val();
+                var desc = $("#txtdesc").val();
+                var gender = $("#txtgender").val();
+                var release = $("#txtrelease").val();
+                var seasons = $("#txtseasons").val();
+                var episodes = $("#txtepisodes").val();
+                var imdb = $("#txtimdb").val();
+                var cusers = $("#txtcusers").val();
+
+                $.ajax({
+                        method: "POST",
+                        url: "http://localhost:8080/ShowIt/api/shows",
+                        data: {
+                            name: name,
+                            desc: desc,
+                            gender: gender,
+                            release: release,
+                            seasons: parseInt(seasons),
+                            episodes: parseInt(episodes),
+                            imdb: parseInt(imdb),
+                            cusers: parseInt(cusers)
+                        }
+                    })
+                    .done(function (msg) {
+                        alert("Show Created");
+                    })
+                    .fail(function (msg) {
+                        alert(msg.responseText);
+                    });
+
+
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <p class="round1" id="Descubra"></p>
+        <div class="customHr " style="margin-top: 100px">.</div>
+
+        <div class="row">
+            <h2>Create Show</h2>
+        </div>
+
+
+
+        <div class="customHr" id="sugest" style="margin-top: 50px">.</div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row" id="bigDiv">
+                    <div class="row" id="">
+                        <div class="col-md-12" id="">
+                            <div class="row" id="" style="margin-left: 10px; margin-right: 10px">
+                                <form action="" method="post" >
+                                    <div class='form-group'>
+                                        <div class="row">
+                                            <br>
+                                            <div class="col-md-3">
+                                                <label for='txtname' class='sr-onl'>Name </label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input id='txtname' style='width: 300px; margin-left: 10px' required=''
+                                                    class='form-control' name='txtname'>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class='form-group'>
+                                        <div class="row">
+                                            <br>
+                                            <div class="col-md-3">
+                                                <label for='txtdesc' class='sr-onl'>Description </label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input id='txtdesc' style='width: 300px; margin-left: 10px' required=''
+                                                    class='form-control' name='txtdesc'>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class='form-group'>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label for='txtgender' class='sr-onl'>Gender</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input id='txtgender' style="width: 300px; margin-left: 10px"
+                                                    placeholder='Gender' class='form-control' name='txtgender'>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class='form-group'>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label for='txtrelease' class='sr-onl'>Release</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input id='txtrelease' style="width: 300px; margin-left: 10px" required=''
+                                                    placeholder='Release' class='form-control' name='txtrelease'>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class='form-group'>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label for='txtseasons' class='sr-onl'>Seasons</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input id='txtseasons' style="width: 300px; margin-left: 10px"
+                                                    placeholder='Seasons' class='form-control' name='txtseasons'>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class='form-group'>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label for='txtepisodes' class='sr-onl'>Episodes</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input id='txtepisodes' style="width: 300px; margin-left: 10px"
+                                                    placeholder='Episodes' class='form-control' name='txtepisodes'>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class='form-group'>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label for='txtimdb' class='sr-onl'>IMDB Rate</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input id='txtimdb' style="width: 300px; margin-left: 10px" placeholder='IMDB'
+                                                    class='form-control' name='txtimdb'>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class='form-group'>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label for='txtcusers' class='sr-onl'>Your Rate</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input id='txtcusers' style="width: 300px; margin-left: 10px"
+                                                    placeholder='Rate' class='form-control' name='txtcusers'>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class='form-group'>
+                                        <!-- <center> -->
+                                        <button id="btnaddShow" style="width: 300px" class='btn btn-success form-control'>Add
+                                            Show
+                                        </button>
+                                        <!-- </center> -->
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
