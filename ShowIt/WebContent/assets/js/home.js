@@ -108,7 +108,7 @@ $(document).ready(function () {
 						    	$('#logoutbut').attr('style', 'cursor:pointer');
 
 						    }
-						    //Change the active link to the shows page instead of the home
+						    //Change the active link to the shows page instead of the homee
 						    callPage("assets/pages/shows.html");
 					        $(".nav-item").removeClass('active');
 					        $("#nav-activate").addClass('active');
