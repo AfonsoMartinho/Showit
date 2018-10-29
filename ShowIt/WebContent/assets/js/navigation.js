@@ -2,7 +2,7 @@ $(document).ready(function () {
 	
 
     var Initialload = true;
-    //$.backstretch("assets/img/backgrounds/2.png");
+
 
     if (Initialload == true) {
         $.ajax({
@@ -21,7 +21,7 @@ $(document).ready(function () {
     
     
     
-    // Click para chamar pagina
+    // Click to call Page
     $('.single').on('click', function (e) {
         e.preventDefault();
         var pageRef = $(this).attr('href');

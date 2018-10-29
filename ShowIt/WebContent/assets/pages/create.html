@@ -15,86 +15,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 
+    <script src="assets/js/create.js"></script>
 
 
-    <script>
-        $(document).ready(function () {
-
-            //Get localstorageu user
-	var username = localStorage.getItem("username");
-	
-            alert(username);
-	$("#uname").html("Olá " + username);
-	
-	//Logout and clean Local Storage
-	$("#logoutbut").click(function () {
-		localStorage.clear();
-			window.location.href = "index.html";
-	});
-	
-	var myToken;
-	if (localStorage.token == null) {
-		myToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ";
-	} else {
-		myToken = localStorage.token;
-	}
-
-            /* $("#btnaddShow").click(function () {
-            	$.ajax({
-					method: "POST",
-					url: "http://localhost:8080/ShowIt/api/shows/",
-					data: {
-						name: $("#txtname").val(),
-                        desc: $("#txtdesc").val(),
-                        gender: $("#txtgender").val(),
-                        release: $("#txtrelease").val(),
-                        seasons: $("#txtseasons").val(),
-                        episodes: $("#txtepisodes").val(),
-                        imdb: $("#txtimdb").val(),
-                        cusers: $("#txtcusers").val(),
-					}
-				})
-                    .done(function (msg) {
-                    	alert(msg);
-                        alert("Show Created!");
-                    });
-            });
-        }); */
-            $("#btnaddShow").click(function () {
-                var name = $("#txtname").val();
-                var desc = $("#txtdesc").val();
-                var gender = $("#txtgender").val();
-                var release = $("#txtrelease").val();
-                var seasons = $("#txtseasons").val();
-                var episodes = $("#txtepisodes").val();
-                var imdb = $("#txtimdb").val();
-                var cusers = $("#txtcusers").val();
-
-                $.ajax({
-                        method: "POST",
-                        url: "http://localhost:8080/ShowIt/api/shows",
-                        data: {
-                            name: name,
-                            desc: desc,
-                            gender: gender,
-                            release: release,
-                            seasons: parseInt(seasons),
-                            episodes: parseInt(episodes),
-                            imdb: parseInt(imdb),
-                            cusers: parseInt(cusers)
-                        }
-                    })
-                    .done(function (msg) {
-                        alert("Show Created");
-                    })
-                    .fail(function (msg) {
-                        alert(msg.responseText);
-                    });
-
-
-            });
-        });
-    </script>
 
 </head>
 

@@ -15,101 +15,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 
-
-    <script>
-        $(document).ready(function () {
-        	
-        	   //Get localstorageu user
-        	var username = sessionStorage.getItem("username");
-        	
-                    
-        	$("#uname").html(username);
-        	
-        	//Logout and clean Local Storage
-        	$("#logoutbut").click(function () {
-        		localStorage.clear();
-        			window.location.href = "index.html";
-        	});
-        	
-    		$("#GetExercicio").click(function () {
-    			var category = $("#txtGetExercicio").val();
-    			var url = "http://localhost:8080/ShowIt/api/shows/" + category;
-        		
-        			
-        		var jqxhr = $.get(url, function() {
-        			  
-        		})
-    				.done(function (data) {
-                	console.log(data);
-                    $("#tbl").empty();
-                    var trTemp = "";
-                    trTemp += "<tr><th colspan='8'>Shows</th></tr>";
-                    trTemp += "<tr><th>Name</th><th>Description</th><th>Gender</th><th>Release</th><th>Seasons</th><th>Episodes</th><th>IMDB</th><th>Users Rate</th></tr>";
-                    $("#tbl").append(trTemp);
-
-                    $.each(data, function (i, obj) {
-                       
-                            trTemp = "<tr><td>" + obj.name + "</td><td>" +
-                            obj.desc + "</td><td>" +
-                            obj.gender + "</td><td>" +
-                            obj.release + "</td><td>" +
-                            obj.seasons + "</td><td>" +
-                            obj.episodes + "</td><td>" +
-                            obj.imdb + "</td><td>" +
-                            obj.cusers + "</td><tr>";
-                            
-                            $("#tbl").append(trTemp);
-                    });
-
-                })
-    				
-    			.fail(function (e) {
-    				alert("The Show doesnt exists");
-    			});
-    		});
-    		
-
-    		$("#btnTodos").click(function () {
-    		
-    
-        		var url = "http://localhost:8080/ShowIt/api/shows";
-        		
-        			
-        		var jqxhr = $.get(url, function() {
-        			  
-        		})
-        		 .done(function (data) {
-                 	console.log(data);
-                     $("#tbl").empty();
-                     var trTemp = "";
-                     trTemp += "<tr><th colspan='8'>All Shows</th></tr>";
-                     trTemp += "<tr><th>Name</th><th>Description</th><th>Gender</th><th>Release</th><th>Seasons</th><th>Episodes</th><th>IMDB</th><th>Users Rate</th></tr>";
-                    $("#tbl").append(trTemp);
-
-                     $.each(data, function (i, obj) {
-                        
-                        trTemp = "<tr><td>" + obj.name + "</td><td>" +
-                            obj.desc + "</td><td>" +
-                            obj.gender + "</td><td>" +
-                            obj.release + "</td><td>" +
-                            obj.seasons + "</td><td>" +
-                            obj.episodes + "</td><td>" +
-                            obj.imdb + "</td><td>" +
-                            obj.cusers + "</td><tr>";
-                       
-                             $("#tbl").append(trTemp);
-                     });
-
-                 })
-                 .fail(function () {
-                     alert("error");
-                 });
-            });
-           
-        });
-        
-
-    </script>
+    <script src="assets/js/shows.js"></script>
 
 </head>
 
@@ -130,12 +36,12 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <h5>Search Show</h5>
-                        <input id='txtGetExercicio' type='text' required='' placeholder='Show' class='form-control'
-                            name='GetExercicio'>
-                        <button type="button" id="GetExercicio" class="btn btn-sm"> <span class="glyphicon glyphicon-search"></span>Shearch
+                        <input id='txtGetShow' type='text' required='' placeholder='Show' class='form-control'
+                            name='GetShow'>
+                        <button type="button" id="GetShow" class="btn btn-sm"> <span class="glyphicon glyphicon-search"></span>Shearch
                         </button>
                         <button type="button" class="btn  btn-sm" id="btnTodos">
-                            <span class="glyphicon glyphicon-refresh"></span> Show Alli
+                            <span class="glyphicon glyphicon-refresh"></span> Show All
                         </button>
                     </div>
                 </div>

@@ -1,3 +1,5 @@
+ 
+ //Gets current user and Stores user data
   function getvalues(Uname){
 	
 		  $.ajax({
@@ -20,6 +22,7 @@
   
 $(document).ready(function () {
 		
+	//Register users
 	$("#btnRegister").click(function () {
 			
 			var name= $("#txtName").val();
@@ -75,6 +78,8 @@ $(document).ready(function () {
     }
     Initialload = false;
 
+
+	//LogIn Manager
 		$("#btnLogin").click(function () {
 		
 			user= $("#form-username").val();
