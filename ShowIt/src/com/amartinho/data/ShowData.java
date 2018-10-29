@@ -22,6 +22,7 @@ public class ShowData {
 	static ShowData sd = null;
 	public static MongoCollection<Show> colShow;
 	
+	//DATABASE CONNECTION
 	public static ShowData getInstance() {
 		if(sd == null) {
 			sd = new ShowData();			

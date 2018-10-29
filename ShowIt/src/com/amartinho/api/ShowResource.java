@@ -27,7 +27,8 @@ import io.jsonwebtoken.SignatureException;
 
 @Path("/shows")
 public class ShowResource {
-	//GETS all activities
+	
+		//GETS ALL SHOWS By gender (if no gender provided then shows all)
 		@GET
 		@Produces(MediaType.APPLICATION_JSON)
 		public List<Show> getShows(@QueryParam("gender") String gender) {
@@ -38,6 +39,8 @@ public class ShowResource {
 			return sm.getShows();
 		}
 		
+		//GETS ALL SHOWS By gender (if no gender provided then shows all)
+		//Returns XML data
 		@GET
 		@Path("/xml")
 		@Produces(MediaType.APPLICATION_XML)
@@ -49,7 +52,7 @@ public class ShowResource {
 			return sm.getShows();
 		}
 		
-		// GET a specific show
+		// GETS a specific show BY NAME 
 		@Path("/{name}")
 		@GET
 		@Produces(MediaType.APPLICATION_JSON)
@@ -93,7 +96,7 @@ public class ShowResource {
 			return false;
 		}*/
 		
-		//Post a new show
+		//POSTS a new show
 		@POST
 		@Consumes("application/x-www-form-urlencoded")
 		public Response insertShow(

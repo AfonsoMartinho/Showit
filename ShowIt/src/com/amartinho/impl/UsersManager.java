@@ -31,31 +31,32 @@ static List<User> users = new ArrayList<User>();
 	}
 	
 
-	//GET todos os Users
+	//GET ALL Users
 	public List<User> getUsers() {
 		UserData userdata = UserData.getInstance();				
 		return userdata.getData();
 	}
 
-	//GET todos os users com um determinado parametro 
+	//GET User By Parameter
 	public List<User> getUsers(String param) {
 		UserData userdata = UserData.getInstance();				
 		return userdata.getData(param);
 	}	
 
-	//DELETE Remover Utilizador
+	//DELETE User
 	public void removeUser(String username) {
 		UserData userdata = UserData.getInstance();				
 		userdata.removeData(username);
 	}
 
-	//POST Adicionar Utilizador
+	//POST User
 	public void createUser(String name,
 			String username, String password, String email) {
 		UserData userdata = UserData.getInstance();
 		userdata.insertData(new User(name,username,password,email));		
 	}
 	
+	//Update User
 	public void updateUser(String oldname, String name,
 			String username, String password, String email) {
 		UserData userdata = UserData.getInstance();

@@ -29,6 +29,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @Path("/users")
 public class UsersResource {
+	
+	//SEE IF USER EXISTS
 	public boolean getAuth(String username, String password)
 	{
 		UserData userData = UserData.getInstance();
@@ -68,7 +70,6 @@ public class UsersResource {
 	
 	
 	//GETS all users
-
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<User> getUsers(@QueryParam("username") String username) {
@@ -98,6 +99,7 @@ public class UsersResource {
 		return Response.ok().entity("User removed!").build();
 	}
 	
+	//UPDATES user DATA
 	@PUT
 	@Path("/{oldname}")
 	@Consumes("application/x-www-form-urlencoded")
@@ -115,7 +117,7 @@ public class UsersResource {
 		return Response.created(builder.build()).build();
 	}
 	
-	//Post a new user
+	//POSTS a new user
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
 	public Response insertUser(

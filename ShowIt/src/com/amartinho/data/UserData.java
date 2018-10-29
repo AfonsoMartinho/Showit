@@ -22,6 +22,7 @@ public class UserData {
 	static UserData ud = null;
 	public static MongoCollection<User> colUser;
 	
+	//DATABASE CONNECTION
 	public static UserData getInstance() {
 		if(ud == null) {
 			ud = new UserData();			

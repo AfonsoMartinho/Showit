@@ -32,30 +32,31 @@ static List<Show> shows = new ArrayList<Show>();
 	}
 	
 
-	//GET todos os Users
+	//GET ALL Shows
 	public List<Show> getShows() {
 		ShowData showdata = ShowData.getInstance();				
 		return showdata.getData();
 	}
 
-	//GET todos os users com um determinado parametro Exemplo : Age,Height,Weight,Sex ou u utilizador pois o username é unico
+	//GET Shows by Parameter 
 	public List<Show> getShows(String param) {
 		ShowData showdata = ShowData.getInstance();				
 		return showdata.getData(param);
 	}	
 
-	//DELETE Remover Utilizador
+	//DELETE Show
 	public void removeShow(String name) {
 		ShowData userdata = ShowData.getInstance();				
 		userdata.removeData(name);
 	}
 
-	//POST Adicionar Show
+	//POST Show
 	public void createShow(String name, String desc, String gender, String release, int seasons, int episodes, int imdb, int cusers) {
 		ShowData showdata = ShowData.getInstance();
 		showdata.insertData(new Show(name,desc,gender,release,seasons,episodes,imdb,cusers));		
 	}
 	
+	//Update Show
 	public void updateShow(String oldname,String name, String desc, String gender, String release, int seasons, int episodes, int imdb, int cusers) {
 		ShowData showdata = ShowData.getInstance();
 		showdata.updateData(new Show(name,desc,gender,oldname,seasons,episodes,imdb,cusers),new Show(name,desc,gender,release,seasons,episodes,imdb,cusers));		
