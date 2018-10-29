@@ -5,7 +5,7 @@
 Server: Java & JAX-RS (Jersey)
 Client: HTML, JQuery, Bootstrap, CSS
 
-Representation: JSON XML
+Representation: JSON XML <br>
 Validation: JSNOSchema and XMLSchema
 
 Database: MongoDB
