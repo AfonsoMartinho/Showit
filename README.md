@@ -3,7 +3,7 @@
 
 
 Server: Java & JAX-RS (Jersey)
-Client: HTML, JQuery, Bootstrap
+Client: HTML, JQuery, Bootstrap, CSS
 
 Representation: JSON XML
 Validation: JSNOSchema and XMLSchema
